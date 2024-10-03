@@ -1,0 +1,6 @@
+# Vscode settings and temporary files directories
+.vscode
+.cache
+
+# Build directory with object files
+build
