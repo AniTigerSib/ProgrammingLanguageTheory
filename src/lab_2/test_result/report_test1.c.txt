@@ -1,0 +1,22 @@
+152145l  long
+124u  unsigned int
+6  int
+12  int
+125125  int
+524ul  unsigned long
+0124  int
+0x151l  long
+0xL  ERROR
+0x  ERROR
+5lul  ERROR
+065129  ERROR
+0  int
+50  int
+50  int
+2  int
+0  int
+0  int
+1  int
+1  int
+0  int
+0  int

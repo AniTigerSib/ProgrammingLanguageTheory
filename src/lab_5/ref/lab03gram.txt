@@ -1,0 +1,11 @@
+Grammar's rules set:
+
+  S ::= I=E;
+  E ::= E+T | E-T | T
+  T ::= T*M | T/M | M
+  M ::= (E) | -M | I | C
+  I ::= A | AK
+  K ::= A | AK | D | DK
+  C ::= D | CD
+  A ::= a | b | ... | z | _
+  D ::= 0 | 1 | ... | 9

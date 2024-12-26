@@ -1,0 +1,31 @@
+<double_quotes>       ::= '"'
+<quotes>              ::= "'"
+<letter>              ::= "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z"
+<string_literal>      ::= 
+
+
+<empty_space>         ::= ""
+<single_quotes>       ::= "'"
+<sign>                ::= "+" | "-" | <empty_space>
+<bin_digit>           ::= "0" | "1"
+<oct_digit>           ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7"
+<dec_digit>           ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<hex_digit>           ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "a" | "A" | "b" | "B" | "c" | "C" | "d" | "D" | "e" | "E" | "f" | "F"
+<bin_pref>            ::= "0b" | "0B" // since c++14
+<bin_prefix>          ::= <bin_pref> <bin_digit>
+<oct_pref>            ::= "0"
+<oct_prefix>          ::= <oct_pref> <oct_digit>
+<dec_prefix>          ::= <dec_digit>
+<hex_pref>            ::= "0x" | "0X"
+<hex_prefix>          ::= <hex_pref> <hex_digit>
+<size_t_suffix>       ::= "z" // since c++23
+<u_suffix>            ::= "u" | "U"
+<l_suffix>            ::= "l" | "L"
+<ll_suffix>           ::= "ll" | "LL"
+<suffix>              ::= <size_t_suffix> | <l_suffix> | <ll_suffix> | (<u_suffix> (<size_t_suffix> | <l_suffix> | <ll_suffix> | <empty_space>))
+<binary_num>          ::= <bin_prefix> {<bin_digit>}
+<octal_num>           ::= <oct_prefix> {<oct_digit>}
+<decimal_num>         ::= <dec_prefix> {<dec_digit>}
+<hexadecimal_num>     ::= <hex_prefix> {<hex_digit>}
+<decimal_number>      ::= <binary_num> | ((<octal_num> | <decimal_num> | <hexadecimal_num>) [<suffix>])
+<decimal_number_snd>  ::= <sign> <decimal_number>
