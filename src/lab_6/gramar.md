@@ -1,3 +1,4 @@
+## Base grammar
 I.
 
     S -> I(E)
@@ -26,22 +27,18 @@ VI.
 
     D -> 0|1
 
-Grammar:
+Cooked grammar:
 
     S -> I(E)
     E -> -E|+(T)|*(T)|#R|I(E)|I
     T -> E,T|E
-    // M -> I|C
     I -> AK|A
     K -> DK|D
-    // C -> #R
     R -> DR|D
     A -> а|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|_
     D -> 0|1
 
-сначала разобрать выражение в скобках, потом присваивать
-
-## Изменения
+## Changes
 
     S -> I(E)
     S -> I[E]
@@ -51,3 +48,15 @@ Grammar:
 
     T -> E,T|E
     T -> T,E|E
+
+## Changed grammar
+
+    S -> I[E]
+    E -> -(T)|+(T)|*(T)|S|I|C
+    T -> T,E|E
+    C -> #R
+    I -> AK|A
+    K -> DK|D
+    R -> DR|D
+    A -> а|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|_
+    D -> 0|1

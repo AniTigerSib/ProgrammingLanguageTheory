@@ -272,7 +272,6 @@ Token Syntaxer::g() {
     tokens_.pop_back();
     // PrintStack();
 
-    // bool flag = false;
     while (buffer_.size() > 0) {
         for (int i = 0; i < rules_.size(); i++) {
             bool flag = CompareBufferToRule(rules_[i]);
