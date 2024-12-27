@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iostream>
 #include <list>
+#include <ostream>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -26,7 +27,8 @@ struct Token {
     };
     void setTriadNum(int n) {
         thriadNum = n;
-        triads[0] = n;
+        // triads[0] = n;
+        triads.assign(1, n);
     }
     std::string toString() const;
 };
@@ -228,24 +230,27 @@ int Syntaxer::PerformOperation(char operation, Token &token) {
             if (token.triads.size() == 1) {
                 return WriteOperation('-', 0, token);
             }
-            for (int i = 0; i < token.triads.size() - 1; i++) {
-                res = WriteOperation('-', token.triads[i], token.triads[i + 1]);
+            res = WriteOperation('-', token.triads[0], token.triads[1]);
+            for (int i = 2; i < token.triads.size(); i++) {
+                res = WriteOperation('-', res, token.triads[i]);
             }
             break;
         case '+':
             if (token.triads.size() == 1) {
                 return WriteOperation('+', 0, token);
             }
-            for (int i = 0; i < token.triads.size() - 1; i++) {
-                res = WriteOperation('+', token.triads[i], token.triads[i + 1]);
+            res = WriteOperation('+', token.triads[0], token.triads[1]);
+            for (int i = 2; i < token.triads.size(); i++) {
+                res = WriteOperation('+', res, token.triads[i]);
             }
             break;
         case '*':
             if (token.triads.size() == 1) {
                 return WriteOperation('*', 1, token);
             }
-            for (int i = 0; i < token.triads.size() - 1; i++) {
-                res = WriteOperation('*', token.triads[i], token.triads[i + 1]);
+            res = WriteOperation('*', token.triads[0], token.triads[1]);
+            for (int i = 2; i < token.triads.size(); i++) {
+                res = WriteOperation('*', res, token.triads[i]);
             }
             break;
         default:
@@ -280,8 +285,6 @@ Token Syntaxer::g() {
                     token.setTriadNum(buffer_[0].thriadNum);
                 }
                 if (i == 3) {
-                    // std::cout << buffer_[0].toString() << std::endl;
-                    // std::cout << buffer_[2].toString() << std::endl;
                     token.setTriadNum(WriteOperation('=', buffer_[0].thriadNum, buffer_[2].thriadNum));
                 }
                 if (i == 10) {
